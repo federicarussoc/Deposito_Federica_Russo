@@ -1,5 +1,5 @@
 #lezione 09/06/2026
-#clausole di controllo del flusso 
+#clausole di controllo del flusso, diamo maggiori informazioni al flusso
 
 #PASS
 #Non fa niente: serve a evitare l'errore mentre costruiamo i software.
@@ -16,7 +16,7 @@ for i in range(5):
     print(i)
 
 #BREAK 
-#utilizzata per interrompere il lciclo
+#utilizzata per interrompere il ciclo in anticipo se si verifica una condizione specifica
 for i in range(5):
     if i == 3:
         break
@@ -42,7 +42,9 @@ print(numeri)
 
 #funzioni
 #esempio massimo dell'astrazione 
+#dichiarando una funzione possiamo definire un blocco di codice che poi viene richiamato in un altro punto
 #la funzione viene scritta in un punto
+#i parametri possono essere posizionali, keyword e di default 
 
 def esempio(parametri):
     #corpo della funzione
