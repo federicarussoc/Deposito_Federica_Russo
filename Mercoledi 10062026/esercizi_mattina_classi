@@ -1,0 +1,28 @@
+# Esercizio 1
+
+class Punto:  # Dichiaro la classe
+
+    def __init__(self, x,y): # Costruttore
+        self.x = x
+        self.y = y
+
+    def muovi(self, dx, dy): # Metodo di istanza
+        self.x = dx
+        self.y = dy
+
+    def distanza_da_origine(self): # Metodo di istanza
+        return ((self.x ** 2) + (self.y ** 2)) ** 0.5
+    
+
+# Esercizio 2
+
+class Libro:
+
+    def __init__(self, titolo, autore, pagine):
+        self.titolo = titolo
+        self.autore = autore
+        self.pagine = pagine
+    
+    def descrizione(self):
+        return f"Il libro {self.titolo} è stato scritto da {self.autore} e ha {self.pagine} pagine"  
+    
