@@ -1,16 +1,16 @@
 # Esercizio 1
 
-class Punto:  # Dichiaro la classe
+class Punto:  #dichiaro la classe
 
-    def __init__(self, x,y): # Costruttore
+    def __init__(self, x,y): #costruttore
         self.x = x
         self.y = y
 
-    def muovi(self, dx, dy): # Metodo di istanza
+    def muovi(self, dx, dy): #metodo di istanza
         self.x = dx
         self.y = dy
 
-    def distanza_da_origine(self): # Metodo di istanza
+    def distanza_da_origine(self): #metodo di istanza
         return ((self.x ** 2) + (self.y ** 2)) ** 0.5
     
 
@@ -26,3 +26,39 @@ class Libro:
     def descrizione(self):
         return f"Il libro {self.titolo} è stato scritto da {self.autore} e ha {self.pagine} pagine"  
     
+# Extra
+
+class Libro:
+    #costruttore della classe
+    def __init__(self, titolo, autore, pagine):
+        self.titolo = titolo
+        self.autore = autore
+        self.pagine = pagine
+
+    #metodo di istanza che restituisce una descrizione del libro
+    def descrizione(self):
+        return f"Il libro {self.titolo} è stato scritto da {self.autore} e ha {self.pagine} pagine"
+    #metodo di classe
+    #per creare più oggetti Libro tramite input utente
+    @classmethod
+    def crea_libri(cls):
+        libri = [] #lista vuota che contiene gli oggetti Libro creati dall'utente
+
+        n = int(input("Quanti libri vuoi inserire? "))
+
+        for i in range(n): #ripeto per quante volte ha scelto l'utente
+            print(f"Libro {i + 1}") # Contatore 
+            # L'utente inserisce i dati del libro
+            titolo = input("Titolo: ")
+            autore = input("Autore: ")
+            pagine = int(input("Pagine: "))
+
+            #crea un nuovo oggetto Libro e lo aggiunge alla lista
+            libri.append(cls(titolo, autore, pagine))
+
+        return libri #restituisco la lista dei libri creati
+    
+lista_libri = Libro.crea_libri() #richiamo il metodo sulla classe Libro per creare la lista libri
+
+for libro in lista_libri: #stampo la descrizione di ogni libro in lista
+    print(libro.descrizione())

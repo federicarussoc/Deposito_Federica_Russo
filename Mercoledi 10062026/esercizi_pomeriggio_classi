@@ -1,0 +1,71 @@
+# Esercizio 3
+
+class ContoCorrente:
+
+    def __init__(self, intestatario, saldo = 0): #costruttore della classe
+        self.intestatario = intestatario
+        self.saldo = saldo
+
+    def deposita(self, importo): #metodo di istanza
+        if importo <= 0:
+            print("Errore: importo inferiore o uguale a zero")
+        else:
+            self.saldo += importo
+        
+    def preleva(self, importo): #metodo di istanza
+
+        if self.saldo < importo :
+            print("Errore: saldo non sufficiente")
+        else:
+            self.saldo -= importo
+
+    def stampa_saldo(self): #metodo di istanza
+        print(f"Il saldo di {self.intestatario} è: {self.saldo}€")
+
+
+# Esercizio 4
+
+# Classe Garage
+
+class Garage:
+
+    def __init__(self, capienza): #costruttore inizializza capienza garage
+        self.capienza = capienza
+        self.auto_presenti = [] #lista vuota per auto presenti
+
+    def parcheggia(self, targa): #metodo di istanza
+        
+        if not Garage.formato_targa_valido(targa):
+            print("Errore: formato targa non valido")
+
+        elif len(self.auto_presenti) == self.capienza: #se il garage è pieno
+            print("Errore: garage pieno") #messaggio errore
+        elif targa in self.auto_presenti: #se la targa è già presente
+            print("Attenzione: auto già presente in garage") #messaggio errore
+        else: 
+            self.auto_presenti.append(targa) #altrimenti aggiungo la targa alla lista auto
+    
+    def rimuovi(self, targa): #metodo di istanza
+        if targa not in self.auto_presenti: #se la targa non è presente nella lista auto
+            print("Errore: auto non presente in garage") #messaggio errore
+        else:
+            self.auto_presenti.remove(targa) #altrimenti uso remove per eliminare il primo valore corrispondente all'interno della lista auto 
+                                             #(che mi va bene perchè già controllo che una stessa auto non possa essere aggiunta due volte)
+    
+    def posti_liberi(self): #metodo di istanza 
+        return self.capienza - len(self.auto_presenti) #restituisce numero posti ancora disponibili
+    
+    @staticmethod #metodo statico perché il controllo della targa non dipende né da self né da cls, ma solo dal parametro passato
+    def formato_targa_valido(targa):
+        if not isinstance(targa, str): #controllo che l'argomento passato sia una stringa
+            return False
+        if len(targa) != 7: #controllo la lunghezza della stringa
+            return False
+        else: #se la lunghezza è corretta passo alle successive verifiche
+            if targa[0:2].isalpha(): #controllo che i primi due caratteri siano lettere
+                if targa[2:5].isdigit(): #controllo che i successivi tre caratteri siano numeri
+                    if targa[5:7].isalpha(): #controllo che gli ultimi due caratteri siano lettere
+                        return True
+            return False #se almeno uno dei controlli fallisce, ritorno False
+    
+
